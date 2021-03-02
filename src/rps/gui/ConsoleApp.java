@@ -39,7 +39,7 @@ public class ConsoleApp {
             if (playerMove.equalsIgnoreCase("exit"))
                 break;
 
-            ge.playRound(Move.valueOf(playerMove));
+           ge.playRound(Move.valueOf(playerMove));
 
             ge.getGameState().getHistoricResults().forEach((result) -> {
                 System.out.println(getResultAsString(result));

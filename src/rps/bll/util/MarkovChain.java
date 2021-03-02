@@ -1,10 +1,13 @@
 package rps.bll.util;
 
+import javafx.fxml.Initializable;
 import rps.bll.game.Move;
 
+import java.net.URL;
 import java.util.Random;
+import java.util.ResourceBundle;
 
-public class MarkovChain implements IMarkovChain {
+public class MarkovChain implements IMarkovChain, Initializable {
     private int[][] matrix;
     private int nbRounds;
     private static final Random RANDOM = new Random();
@@ -87,4 +90,8 @@ public class MarkovChain implements IMarkovChain {
         this.nbRounds = nbRounds;
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initialize();
+    }
 }

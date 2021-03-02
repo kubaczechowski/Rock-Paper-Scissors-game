@@ -16,7 +16,6 @@ public class Result {
     private IPlayer loserPlayer;
     private int roundNumber;
 
-
     /**
      * Initializes a new Result with a winner, loser, their moves and a type
      * @param winnerPlayer
@@ -26,7 +25,8 @@ public class Result {
      * @param type
      * @param roundNumber
      */
-    public Result(IPlayer winnerPlayer, Move winnerMove, IPlayer loserPlayer, Move loserMove, ResultType type, int roundNumber) {
+    public Result(IPlayer winnerPlayer, Move winnerMove, IPlayer loserPlayer,
+                  Move loserMove, ResultType type, int roundNumber) {
         this.winnerPlayer = winnerPlayer;
         this.winnerMove = winnerMove;
         this.loserPlayer = loserPlayer;
