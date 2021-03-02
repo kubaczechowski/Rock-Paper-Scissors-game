@@ -10,6 +10,7 @@ import rps.bll.util.MarkovChain;
 //Java imports
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Example implementation of a player.
@@ -21,6 +22,7 @@ public class Player implements IPlayer {
     private String name;
     private PlayerType type;
     private MarkovChain markovChain  = MarkovChain.getController();
+    private static final Random RANDOM = new Random();
 
     /**
      * @param name
@@ -55,18 +57,15 @@ public class Player implements IPlayer {
 
         //Implement better AI here...
         //return Move.Rock;
-        return getPreviousMove(results).getLosesTo();
-    }
-
-    private Move getPreviousMove(List<Result> resultList){
-        Result lastResult = resultList.get(resultList.size()-1);
-
-        if(lastResult.getType().equals(ResultType.Tie))
-            return lastResult.getLoserMove();
-        //get the information whether bot was a loser or winner
-        if(lastResult.getWinnerPlayer().equals( PlayerType.AI))
-            return lastResult.getWinnerMove();
+        if(!results.isEmpty()) {
+            Move previousMove = MarkovChain.getPreviousMove(results).getLosesTo();
+           Move next =  markovChain.getNextMove(previousMove);
+           markovChain.updateMarkovChain(previousMove, next);
+           markovChain.incrementNbRounds();
+           return next;
+        }
         else
-            return lastResult.getLoserMove();
+            return Move.values()[RANDOM.nextInt(Move.values().length)];
     }
+
 }

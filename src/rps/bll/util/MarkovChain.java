@@ -2,12 +2,16 @@ package rps.bll.util;
 
 import javafx.fxml.Initializable;
 import rps.bll.game.Move;
+import rps.bll.game.Result;
+import rps.bll.game.ResultType;
+import rps.bll.player.PlayerType;
 
 import java.net.URL;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-public class MarkovChain implements IMarkovChain, Initializable {
+public class MarkovChain implements IMarkovChain {
     private int[][] matrix;
     private int nbRounds;
     private static final Random RANDOM = new Random();
@@ -19,7 +23,9 @@ public class MarkovChain implements IMarkovChain, Initializable {
         return markovChain;
     }
 
-
+    public MarkovChain() {
+        initialize();
+    }
 
     /**
      * after users move the corresponding value in the matrix is
@@ -61,7 +67,7 @@ public class MarkovChain implements IMarkovChain, Initializable {
     public Move getNextMove(Move previous) {
         //no records in the matrix
         if (nbRounds < 1)
-            return Move.values()[RANDOM.nextInt(Move.values().length)];
+           return Move.values()[RANDOM.nextInt(Move.values().length)];
 
         Move predictedNext = getPredictedMove(previous);
 
@@ -82,6 +88,18 @@ public class MarkovChain implements IMarkovChain, Initializable {
         return predictedNext;
     }
 
+    public static Move getPreviousMove(List<Result> resultList){
+        Result lastResult = resultList.get(resultList.size()-1);
+
+        if(lastResult.getType().equals(ResultType.Tie))
+            return lastResult.getLoserMove();
+        //get the information whether bot was a loser or winner
+        if(lastResult.getWinnerPlayer().equals( PlayerType.AI))
+            return lastResult.getWinnerMove();
+        else
+            return lastResult.getLoserMove();
+    }
+
     public int getNbRounds() {
         return nbRounds;
     }
@@ -89,9 +107,9 @@ public class MarkovChain implements IMarkovChain, Initializable {
     public void setNbRounds(int nbRounds) {
         this.nbRounds = nbRounds;
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        initialize();
+    public void incrementNbRounds(){
+        nbRounds++;
     }
+
+
 }
