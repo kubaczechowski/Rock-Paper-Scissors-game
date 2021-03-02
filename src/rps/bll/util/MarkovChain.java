@@ -1,16 +1,15 @@
 package rps.bll.util;
 
-import javafx.fxml.Initializable;
 import rps.bll.game.Move;
 import rps.bll.game.Result;
 import rps.bll.game.ResultType;
 import rps.bll.player.PlayerType;
-
-import java.net.URL;
 import java.util.List;
 import java.util.Random;
-import java.util.ResourceBundle;
 
+/**
+ * @author kuba
+ */
 public class MarkovChain implements IMarkovChain {
     private int[][] matrix;
     private int nbRounds;
@@ -72,6 +71,25 @@ public class MarkovChain implements IMarkovChain {
         Move predictedNext = getPredictedMove(previous);
 
         return predictedNext.getLosesTo();
+    }
+
+    /**
+     * method is called whenever the ai is about to make a move
+     *
+     * @param results
+     */
+    @Override
+    public Move action(List<Result> results) {
+        if(!results.isEmpty()) {
+            Move previousMove = MarkovChain.getPreviousMove(results).getLosesTo();
+            Move next =  markovChain.getNextMove(previousMove);
+            markovChain.updateMarkovChain(previousMove, next);
+            markovChain.incrementNbRounds();
+            return next;
+        }
+        else {
+            return Move.values()[RANDOM.nextInt(Move.values().length)];
+        }
     }
 
     private Move getPredictedMove(Move previous){

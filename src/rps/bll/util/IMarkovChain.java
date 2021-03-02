@@ -1,6 +1,9 @@
 package rps.bll.util;
 
 import rps.bll.game.Move;
+import rps.bll.game.Result;
+
+import java.util.List;
 
 public interface IMarkovChain {
 
@@ -24,4 +27,10 @@ public interface IMarkovChain {
      * @return
      */
     Move getNextMove(Move move);
+
+    /**
+     * method is called whenever the ai is about to make a move
+     * @param resultList
+     */
+    Move action(List<Result> resultList);
 }

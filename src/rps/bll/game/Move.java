@@ -19,13 +19,6 @@ public enum Move {
 
     Move losesTo;
 
-   /*
-   public boolean losesTo(Move other) {
-        return losesTo.equals(other);
-    }
-
-    */
-
     static {
         Rock.losesTo = Paper;
         Paper.losesTo = Scissor;

@@ -22,7 +22,6 @@ public class Player implements IPlayer {
     private String name;
     private PlayerType type;
     private MarkovChain markovChain  = MarkovChain.getController();
-    private static final Random RANDOM = new Random();
 
     /**
      * @param name
@@ -57,15 +56,7 @@ public class Player implements IPlayer {
 
         //Implement better AI here...
         //return Move.Rock;
-        if(!results.isEmpty()) {
-            Move previousMove = MarkovChain.getPreviousMove(results).getLosesTo();
-           Move next =  markovChain.getNextMove(previousMove);
-           markovChain.updateMarkovChain(previousMove, next);
-           markovChain.incrementNbRounds();
-           return next;
-        }
-        else
-            return Move.values()[RANDOM.nextInt(Move.values().length)];
+        return markovChain.action(results);
     }
 
 }
