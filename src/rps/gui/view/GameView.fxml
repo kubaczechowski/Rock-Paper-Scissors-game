@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rps.gui.controller.GameViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="86.0" layoutY="190.0" text="Now you can start to build the GUI and implement an awesome game">
+      <HBox layoutX="7.0" layoutY="316.0" prefHeight="69.0" prefWidth="336.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="51.0">
+         <children>
+            <ImageView fx:id="rock" fitHeight="90.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="paper" fitHeight="90.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="scissors" fitHeight="90.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="112.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="informationLabel" layoutX="130.0" layoutY="129.0" text="You win!">
          <font>
-            <Font size="14.0" />
+            <Font size="43.0" />
+         </font>
+      </Label>
+      <Label fx:id="playerScore" layoutX="344.0" layoutY="113.0" text="Player: 2">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="botScore" layoutX="22.0" layoutY="113.0" text="Bot: 2">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="190.0" layoutY="71.0" text="Round: 5">
+         <font>
+            <Font size="15.0" />
          </font>
       </Label>
    </children>
