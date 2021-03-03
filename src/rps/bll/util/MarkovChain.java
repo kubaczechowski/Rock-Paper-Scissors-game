@@ -2,7 +2,6 @@ package rps.bll.util;
 
 import rps.bll.game.Move;
 import rps.bll.game.Result;
-import rps.bll.game.ResultType;
 import rps.bll.player.PlayerType;
 import java.util.List;
 import java.util.Random;
@@ -48,6 +47,8 @@ public class MarkovChain implements IMarkovChain {
         setNbRounds(0);
     }
 
+
+
     private void fillMatrixWithInitialValues(int length) {
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < length; j++) {
@@ -57,44 +58,23 @@ public class MarkovChain implements IMarkovChain {
     }
 
     /**
-     * method returns the best strategic move that will be made by the
-     * AI
+     * method returns the next move predicted for the user
+     * (we assume that it will be a move that they will make)
      * @param previous
      * @return
      */
     @Override
-    public Move getNextMove(Move previous) {
+    public Move getNextUsersMove(Move previous) {
         //no records in the matrix
-        if (nbRounds < 1)
-           return Move.values()[RANDOM.nextInt(Move.values().length)];
-
-        Move predictedNext = getPredictedMove(previous);
-
-        return predictedNext.getLosesTo();
-    }
-
-    /**
-     * method is called whenever the ai is about to make a move
-     *
-     * @param results
-     */
-    @Override
-    public Move action(List<Result> results) {
-        if(!results.isEmpty()) {
-            Move previousMove = MarkovChain.getPreviousMove(results).getLosesTo();
-            Move next =  markovChain.getNextMove(previousMove);
-            markovChain.updateMarkovChain(previousMove, next);
-            markovChain.incrementNbRounds();
-            return next;
-        }
-        else {
+        if (nbRounds < 1) {
+            System.out.println("get random move (less than one round in the records)");
             return Move.values()[RANDOM.nextInt(Move.values().length)];
         }
+        Move predictedNext = getPredictedMove(previous);
+        return predictedNext;
     }
-
     private Move getPredictedMove(Move previous){
         int nextIndex = 0;
-
         for (int i = 0; i < Move.values().length; i++) {
             int prevIndex = previous.ordinal();
 
@@ -103,16 +83,34 @@ public class MarkovChain implements IMarkovChain {
             }
         }
         Move predictedNext = Move.values()[nextIndex];
+        System.out.println("Next predicted move: "+ predictedNext);
         return predictedNext;
     }
+    /**
+     * method is called whenever the ai is about to make a move
+     *
+     * @param results
+     */
+    @Override
+    public Move action(List<Result> results) {
+        if(!results.isEmpty()) {
+            Move previousMove = MarkovChain.getPreviousMove(results);
+            Move next =  markovChain.getNextUsersMove(previousMove);
+            //how should i update it??
+            markovChain.updateMarkovChain(previousMove, next);
+            markovChain.incrementNbRounds();
+            return next.getLosesTo().getLosesTo(); // I have no idea but it works
+        }
+        else {
+            return Move.values()[RANDOM.nextInt(Move.values().length)];
+        }
+    }
+
 
     public static Move getPreviousMove(List<Result> resultList){
         Result lastResult = resultList.get(resultList.size()-1);
 
-        if(lastResult.getType().equals(ResultType.Tie))
-            return lastResult.getLoserMove();
-        //get the information whether bot was a loser or winner
-        if(lastResult.getWinnerPlayer().equals( PlayerType.AI))
+        if(lastResult.getWinnerPlayer().getPlayerType() == PlayerType.Human)
             return lastResult.getWinnerMove();
         else
             return lastResult.getLoserMove();

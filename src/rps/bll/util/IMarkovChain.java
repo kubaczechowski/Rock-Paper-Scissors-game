@@ -21,12 +21,12 @@ public interface IMarkovChain {
     void initialize();
 
     /**
-     * method returns the best strategic move that will be made by the
-     * AI
+     * method returns the move that will propably be
+     * made by the user
      * @param move
      * @return
      */
-    Move getNextMove(Move move);
+    Move getNextUsersMove(Move move);
 
     /**
      * method is called whenever the ai is about to make a move
