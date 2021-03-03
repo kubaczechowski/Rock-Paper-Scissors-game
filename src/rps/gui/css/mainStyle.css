@@ -1,0 +1,42 @@
+#background{
+    -fx-background-image: url("../../../images/background.jpg");
+    -fx-background-position:center;
+    -fx-background-size: 600 400;
+}
+
+#rockBtn{
+    -fx-background-color:transparent;
+    -fx-background-image: url("../../../images/rock.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;
+    -fx-background-size: 40 40;
+}
+
+#paperBtn{
+    -fx-background-color:transparent;
+    -fx-background-image: url("../../../images/paper.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;
+    -fx-background-size: 40 40;
+}
+
+#scissorsBtn{
+    -fx-background-color:transparent;
+    -fx-background-image: url("../../../images/scissors.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;
+    -fx-background-size: 40 40;
+}
+
+.label {
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+    -fx-font-family: "Courier New";
+}
+
+.text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+    -fx-font-family: "Courier New";
+}

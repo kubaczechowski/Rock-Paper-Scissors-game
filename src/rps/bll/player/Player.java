@@ -49,7 +49,27 @@ public class Player implements IPlayer {
         //Historic data to analyze and decide next move...
         ArrayList<Result> results = (ArrayList<Result>) state.getHistoricResults();
 
-        //Implement better AI here...
-        return Move.Rock;
+        int rock=0, paper=0, scissors=0;
+
+        if(!results.isEmpty()) {
+            for (Result result : results) {
+                if (result.getWinnerMove().equals(Move.Rock)) rock++;
+                if (result.getWinnerMove().equals(Move.Paper)) paper++;
+                if (result.getWinnerMove().equals(Move.Scissor)) scissors++;
+            }
+        }
+
+        Move move = Move.Rock;
+        int max = rock;
+        if(max<paper){
+            max = paper;
+            move = Move.Paper;
+        }
+        if(max<scissors) {
+            max = scissors;
+            move = Move.Scissor;
+        }
+
+        return move;
     }
 }
