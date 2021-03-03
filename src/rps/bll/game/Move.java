@@ -1,7 +1,5 @@
 package rps.bll.game;
 
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * The various move options in the game
@@ -9,15 +7,30 @@ import java.util.List;
  * @author smsj
  */
 public enum Move {
-    Rock,
-    Paper,
-    Scissor;
+    Rock("/rps/gui/images/rock6.jpg"),
+    Paper("/rps/gui/images/paper.png"),
+    Scissor("/rps/gui/images/scissors.png");
+
+    String path;
+
+    public String getPath(){
+        return path;
+    }
+
+    private Move(final String imagePath){
+        path = imagePath;
+    }
+
 
     public Move getLosesTo() {
         return losesTo;
     }
 
     Move losesTo;
+
+   public boolean losesTo(Move other) {
+        return losesTo.equals(other);
+    }
 
     static {
         Rock.losesTo = Paper;
