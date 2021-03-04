@@ -1,16 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rps.gui.controller.GameViewController">
-   <children>
-      <Label layoutX="86.0" layoutY="190.0" text="Now you can start to build the GUI and implement an awesome game">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-   </children>
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="Borderpane" stylesheets="@../css/game.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rps.gui.controller.GameViewController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="humanView" fitHeight="425.0" fitWidth="320.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="botView" fitHeight="427.0" fitWidth="320.0" layoutX="480.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="380.0" layoutY="187.0" text="VS">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+            <Label fx:id="WhoIsTheWinner" layoutX="315.0" layoutY="43.0" prefHeight="31.0" prefWidth="169.0">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="120.0" prefWidth="800.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton fx:id="stoneBtn" buttonType="RAISED" onAction="#humanTurn" prefHeight="120.0" prefWidth="250.0" styleClass="button-Rock" stylesheets="@../css/game.css" text="Button" />
+            <JFXButton fx:id="paperBtn" buttonType="RAISED" layoutX="10.0" layoutY="10.0" onAction="#humanTurn" prefHeight="120.0" prefWidth="250.0" styleClass="button-Paper" stylesheets="@../css/game.css" />
+            <JFXButton fx:id="scissorsBtn" buttonType="RAISED" layoutX="10.0" layoutY="10.0" onAction="#humanTurn" prefHeight="120.0" prefWidth="250.0" styleClass="button-Scissors" stylesheets="@../css/game.css" />
+         </children>
+      </HBox>
+   </bottom>
+   <top>
+      <HBox alignment="CENTER" prefHeight="63.0" prefWidth="800.0" spacing="135.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="humanlbl" prefHeight="63.0" prefWidth="114.0" text="Human">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="humanScoreLbl" layoutX="365.0" layoutY="19.0" text="0">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="357.0" layoutY="19.0" text="-">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="botScoreLbl" layoutX="440.0" layoutY="19.0" text="0">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" layoutX="341.0" layoutY="19.0" prefHeight="62.0" prefWidth="94.0" text="Bot">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

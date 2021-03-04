@@ -15,6 +15,12 @@ import java.util.ArrayList;
  */
 public class Player implements IPlayer {
 
+
+    private Move humanMove;
+
+    private Bot bot;
+
+
     private String name;
     private PlayerType type;
 
@@ -22,6 +28,7 @@ public class Player implements IPlayer {
      * @param name
      */
     public Player(String name, PlayerType type) {
+        this.bot = new Bot();
         this.name = name;
         this.type = type;
     }
@@ -50,6 +57,13 @@ public class Player implements IPlayer {
         ArrayList<Result> results = (ArrayList<Result>) state.getHistoricResults();
 
         //Implement better AI here...
-        return Move.Rock;
+        Move getnextMove = bot.getNextMove(humanMove);
+        if (humanMove != null) {
+            bot.updateChain(humanMove, humanMove);
+        }
+        humanMove = humanMove;
+
+
+        return getnextMove;
     }
 }

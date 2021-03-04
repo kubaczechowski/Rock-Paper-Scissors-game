@@ -1,0 +1,31 @@
+.button-Rock{
+    -fx-background-image: url("/rps/images/Rock.png");
+    -fx-background-size: 120px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;
+    -fx-background-color: #d2eff9;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px
+}
+.button-Paper{
+    -fx-background-image: url("/rps/images/Paper.png");
+    -fx-background-size: 120px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;
+    -fx-background-color: #d2eff9;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px
+}
+.button-Scissors{
+    -fx-background-image: url("/rps/images/Scissors.png");
+    -fx-background-size: 120px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:center;
+    -fx-background-color: #d2eff9;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px
+}
+
+.Borderpane{
+    -fx-background-color: white;
+}

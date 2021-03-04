@@ -20,10 +20,15 @@ public class JavaFXApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/rps/gui/view/NewGameView.fxml"));
+            stage.setTitle("Welcome to the not-implemented Rock-Paper-Scissor game!");
+            stage.setScene(new Scene(root));
+            stage.show();
 
-        Parent root = FXMLLoader.load(getClass().getResource("/rps/gui/view/GameView.fxml"));
-        stage.setTitle("Welcome to the not-implemented Rock-Paper-Scissor game!");
-        stage.setScene(new Scene(root));
-        stage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
