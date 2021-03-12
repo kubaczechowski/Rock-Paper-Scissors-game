@@ -1,2 +1,4 @@
 # Rock-Paper-Scissor
-The classic game of Rock-Paper-Scissor implemented in Java
+The school project was to implement winning algorithm for the Bot in Rock Paper Scissors
+
+[Markov Chain implementation](src/rps/bll/util/MarkovChain.java) 
